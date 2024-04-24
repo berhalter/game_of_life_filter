@@ -3,25 +3,28 @@
 import numpy as np
 import sys
 
-import os
-
 if __name__ == "__main__":
     try:
         filename = sys.argv[1]
         num_gens = sys.argv[2]
     except IndexError:
         raise SystemExit(f"Usage: {sys.argv[0]} <filename> <# of generations>")
-        
-    grid = np.zeros((24, 80), int)
+    
+
+    width = 80
+    height = 24
+    grid = np.zeros((height, width), int)
     print("init:")
     for row in grid:
         for col in row:
             sys.stdout.write(str(col))
-        sys.stdout.write('\n')
+        print()
 
-    with open(filename, "r", encoding="utf-8") as f:
-        read_data = f.read()
+    print("\nparsed input:")
+    input = np.loadtxt(filename, dtype=int)
+    for row in input:
+        for col in row:
+            sys.stdout.write(str(col))
+        print()
 
-    print('\ninput:')
-    print(read_data)
 
