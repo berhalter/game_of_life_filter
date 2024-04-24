@@ -35,13 +35,13 @@ if __name__ == "__main__":
         print()
 
     match mode:
-        case "live":
+        case "live": #constant
             pass
-        case "dead":
+        case "dead": #constant
             pass
-        case "wrap":
+        case "wrap": #wrap
             pass
-        case "copy":
+        case "copy": #symmetric
             pass
         case _:
             raise ValueError("Invalid border mode. Valid inputs: \n" + 
