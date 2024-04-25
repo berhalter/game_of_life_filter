@@ -11,9 +11,10 @@ def print_grid(grid):
     for row in grid:
         for col in row:
             if col == live:
-                sys.stdout.write("#")
+                sys.stdout.write("@")
             else:
                 sys.stdout.write(".")
+            sys.stdout.write(" ") #output is too squished without extra spacing
         print()
 
 
