@@ -10,7 +10,10 @@ def print_grid(grid):
     """Prints full grid to terminal, followed by a newline character."""
     for row in grid:
         for col in row:
-            sys.stdout.write(str(col))
+            if col == live:
+                sys.stdout.write("#")
+            else:
+                sys.stdout.write(".")
         print()
 
 
