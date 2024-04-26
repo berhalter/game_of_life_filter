@@ -95,7 +95,7 @@ def run_game(grid, num_gens, pad_mode):
         print(f"\ngeneration {gen}:")
         grid = compute_next_gen(grid, pad_mode)
         print_grid(grid[1:-1, 1:-1])
-
+    return grid
 
 
 if __name__ == "__main__":
