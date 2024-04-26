@@ -7,7 +7,7 @@ live = 1
 dead = 0
 
 def print_grid(grid):
-    """Prints full grid to terminal, followed by a newline character."""
+    """Prints full grid (including padding) to terminal, followed by a newline character."""
     for row in grid:
         for col in row:
             if col == live:
@@ -106,10 +106,9 @@ if __name__ == "__main__":
     except IndexError:
         raise SystemExit(f"Usage: {sys.argv[0]} <filename> <# of generations> <padding mode>")
     
-    grid = np.loadtxt(filename, dtype=int)
-    print("\nparsed input:")
-    print_grid(grid)
+    # grid = np.loadtxt(filename, dtype=int)
+    # print("\nparsed input:")
+    # print_grid(grid)
 
     grid = pad_grid(grid, pad_mode)
-
     run_game(grid, num_gens, pad_mode)
