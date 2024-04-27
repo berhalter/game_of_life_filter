@@ -15,7 +15,6 @@ def normalize(grid):
                 retval[y, x] = 0
             else:
                 retval[y, x] = 1
-    print(retval)
     return retval
 
 def denormalize(grid):
@@ -27,20 +26,23 @@ def denormalize(grid):
                 retval[y, x] = 0
             else:
                 retval[y, x] = 255
-    print(retval)
     return retval
 
-
-for infile in sys.argv[1:]:
+def open_image(filename):
     try:
-        with Image.open(infile) as im:
+        with Image.open(filename) as im:
             im = im.convert("L")
-            im = np.array(im)
-            im = ordered_dither(im, "Bayer2x2")
-            im = normalize(im)
-            im = game.run_game(im, 10, "wrap")
-            im = denormalize(im)
-            im = Image.fromarray(im)
-            im.show()
+            #im.show()
+            return im
     except OSError:
-        print("womp womp")
+        raise SystemExit(f"Could not open {filename}.")
+
+
+def apply_filter(im, num_gens, pad_mode):
+    im = np.array(im)
+    im = ordered_dither(im, "Bayer2x2") #parameterize the fitler size
+    im = normalize(im)
+    im = game.run_game(im, num_gens, pad_mode)
+    im = denormalize(im)
+    im = Image.fromarray(im)
+    return im

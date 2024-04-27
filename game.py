@@ -88,13 +88,13 @@ def compute_next_gen(grid, pad_mode):
 def run_game(grid, num_gens, pad_mode):
     """Plays game for given number of generations.
     Prints output of each generation (without padding) to terminal."""
-    print("\ngeneration 0:")
-    print_grid(grid[1:-1, 1:-1])
+    #print("\ngeneration 0:")
+    #print_grid(grid[1:-1, 1:-1])
 
     for gen in range(1, num_gens+1):
-        print(f"\ngeneration {gen}:")
+        #print(f"\ngeneration {gen}:")
         grid = compute_next_gen(grid, pad_mode)
-        print_grid(grid[1:-1, 1:-1])
+        #print_grid(grid[1:-1, 1:-1])
     return grid
 
 
