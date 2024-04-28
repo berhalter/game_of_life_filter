@@ -40,7 +40,7 @@ def open_image(filename):
 
 def apply_filter(im, num_gens, pad_mode):
     im = np.array(im)
-    im = ordered_dither(im, "Bayer2x2") #parameterize the fitler size
+    im = ordered_dither(im, "Bayer2x2") #TODO: parameterize the fitler size
     im = normalize(im)
     im = game.run_game(im, num_gens, pad_mode)
     im = denormalize(im)

@@ -92,7 +92,7 @@ def run_game(grid, num_gens, pad_mode):
     #print_grid(grid[1:-1, 1:-1])
 
     for gen in range(1, num_gens+1):
-        #print(f"\ngeneration {gen}:")
+        print(f"\ngeneration {gen}:")
         grid = compute_next_gen(grid, pad_mode)
         #print_grid(grid[1:-1, 1:-1])
     return grid
@@ -106,7 +106,7 @@ if __name__ == "__main__":
     except IndexError:
         raise SystemExit(f"Usage: {sys.argv[0]} <filename> <# of generations> <padding mode>")
     
-    # grid = np.loadtxt(filename, dtype=int)
+    grid = np.loadtxt(filename, dtype=int)
     # print("\nparsed input:")
     # print_grid(grid)
 
