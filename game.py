@@ -93,6 +93,7 @@ def run_game(grid, num_gens, pad_mode):
 
     for gen in range(1, num_gens+1):
         print(f"\ngeneration {gen}:")
+        #BUG: Gris is NOT padded before calling compute_next_gen if run_game is called alone
         grid = compute_next_gen(grid, pad_mode)
         #print_grid(grid[1:-1, 1:-1])
     return grid

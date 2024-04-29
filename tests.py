@@ -50,7 +50,38 @@ class Tests(unittest.TestCase):
 
 
     def test_nextgen(self):
-        pass
+
+        # grid of all zeroes
+        grid = np.zeros((3,3), int)
+
+        # grid of all ones
+        grid = np.ones((3,3), int)
+
+        # "any live cell with fewer than two live neighbors dies"
+        grid = np.array([[0,1,0],
+                         [0,1,0],
+                         [0,0,0]], int)
+        
+        # "any live cell with two or three live neighbors lives on to the next generation"
+        grid = np.array([[0,0,0],
+                         [1,1,1],
+                         [0,0,0]], int)
+        
+        grid = np.array([[0,1,0],
+                         [0,1,0],
+                         [1,0,1]], int)
+        
+        # "any live cell with more than three live neighbors dies, as if by overpopulation"
+        grid = np.array([[1,0,1],
+                         [0,1,0],
+                         [1,0,1]], int)
+        
+        # "any dead cell with exactly three live neighbors becomes a live cell"
+        grid = np.array([[0,1,0],
+                         [0,0,0],
+                         [1,0,1]], int)
+        
+
 
     def test_rungame(self):
         pass
