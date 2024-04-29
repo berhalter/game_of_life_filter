@@ -50,48 +50,120 @@ class Tests(unittest.TestCase):
 
 
     def test_nextgen(self):
-
+        print()
+        pad_mode = "dead"
         # grid of all zeroes
         grid = np.zeros((3,3), int)
+        grid = np.pad(grid, 1, mode="constant", constant_values=0)
+        expected = np.zeros((3,3), int)
+        expected = np.pad(expected, 1, mode="constant", constant_values=0)
+        actual = game.compute_next_gen(grid, pad_mode)
+        self.assertTrue(np.array_equal(actual, expected))
 
         # grid of all ones
         grid = np.ones((3,3), int)
+        grid = np.pad(grid, 1, mode="constant", constant_values=0)
+        expected = np.array([[1,0,1],
+                             [0,0,0],
+                             [1,0,1]], int)
+        expected = np.pad(expected, 1, mode="constant", constant_values=0)
+        actual = game.compute_next_gen(grid, pad_mode)
+        self.assertTrue(np.array_equal(actual, expected))
 
         # "any live cell with fewer than two live neighbors dies"
         grid = np.array([[0,1,0],
                          [0,1,0],
                          [0,0,0]], int)
+        grid = np.pad(grid, 1, mode="constant", constant_values=0)
+        expected = np.zeros((3,3), int)
+        expected = np.pad(expected, 1, mode="constant", constant_values=0)
+        actual = game.compute_next_gen(grid, pad_mode)
+        self.assertTrue(np.array_equal(actual, expected))
         
         # "any live cell with two or three live neighbors lives on to the next generation"
         grid = np.array([[0,0,0],
                          [1,1,1],
                          [0,0,0]], int)
-        
+        grid = np.pad(grid, 1, mode="constant", constant_values=0)
+        expected = np.array([[0,1,0],
+                             [0,1,0],
+                             [0,1,0]], int)
+        expected = np.pad(expected, 1, mode="constant", constant_values=0)
+        actual = game.compute_next_gen(grid, pad_mode)
+        self.assertTrue(np.array_equal(actual, expected))
+
         grid = np.array([[0,1,0],
                          [0,1,0],
                          [1,0,1]], int)
-        
+        grid = np.pad(grid, 1, mode="constant", constant_values=0)
+        expected = np.array([[0,0,0],
+                             [1,1,1],
+                             [0,1,0]], int)
+        expected = np.pad(expected, 1, mode="constant", constant_values=0)
+        actual = game.compute_next_gen(grid, pad_mode)
+        self.assertTrue(np.array_equal(actual, expected))
+
         # "any live cell with more than three live neighbors dies, as if by overpopulation"
         grid = np.array([[1,0,1],
                          [0,1,0],
                          [1,0,1]], int)
+        grid = np.pad(grid, 1, mode="constant", constant_values=0)
+        expected = np.array([[0,1,0],
+                             [1,0,1],
+                             [0,1,0]], int)
+        expected = np.pad(expected, 1, mode="constant", constant_values=0)
+        actual = game.compute_next_gen(grid, pad_mode)
+        self.assertTrue(np.array_equal(actual, expected))
         
         # "any dead cell with exactly three live neighbors becomes a live cell"
         grid = np.array([[0,1,0],
                          [0,0,0],
                          [1,0,1]], int)
+        grid = np.pad(grid, 1, mode="constant", constant_values=0)
+        expected = np.array([[0,0,0],
+                             [0,1,0],
+                             [0,0,0]], int)
+        expected = np.pad(expected, 1, mode="constant", constant_values=0)
+        actual = game.compute_next_gen(grid, pad_mode)
+        self.assertTrue(np.array_equal(actual, expected))
         
-
 
     def test_rungame(self):
         pass
 
     def test_normalize(self):
-        pass
+        # all dead
+        grid = np.zeros((3,3), int)
+        expected = grid
+        actual = image.normalize(grid)
+        self.assertTrue(np.array_equal(actual, expected))
+
+        # all live
+        grid = np.array([[255,255,255],
+                         [255,255,255],
+                         [255,255,255]], int)
+        expected = np.ones((3,3), int)
+        actual = image.normalize(grid)
+        self.assertTrue(np.array_equal(actual, expected))
 
     def test_denormalize(self):
-        pass
+        # all dead
+        grid = np.zeros((3,3), int)
+        expected = grid
+        actual = image.denormalize(grid)
+        self.assertTrue(np.array_equal(actual, expected))
 
+        # all live
+        grid = np.ones((3,3), int)
+        expected = np.array([[255,255,255],
+                             [255,255,255],
+                             [255,255,255]], int)
+        actual = image.denormalize(grid)
+        self.assertTrue(np.array_equal(actual, expected))
+
+    # I have no idea how to test these next two since they return images. 
+    # Not overly concerned about it, since failiure of these implies a failure in
+    # a library function or a function I wrote, so I might delete them
     def test_open(self):
         pass
 

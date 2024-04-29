@@ -23,7 +23,7 @@ while running:
     screen.fill("purple")
 
     # RENDER YOUR GAME HERE
-    pil_im = image.apply_filter(pil_im, 3, "wrap")
+    pil_im = image.apply_filter(pil_im, 1, "live")
     #BUG: using different generation counts yields different results after the same total number of generations
     pyg_im = pygame.image.frombytes(pil_im.convert("RGB").tobytes(), pil_im.size, "RGB").convert()
     screen.blit(pyg_im, (0,0))

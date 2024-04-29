@@ -32,20 +32,20 @@ def pad_grid(grid, pad_mode):
     match pad_mode:
         case "live":
             grid = np.pad(grid, 1, mode="constant", constant_values=live)
-            print("\nlive border:")
-            print_grid(grid)
+            #print("\nlive border:")
+            #print_grid(grid)
         case "dead":
             grid = np.pad(grid, 1, mode="constant", constant_values=dead)
-            print("\ndead border:")
-            print_grid(grid)
+            #print("\ndead border:")
+            #print_grid(grid)
         case "wrap":
             grid = np.pad(grid, 1, mode=pad_mode)
-            print("\nwrap border:")
-            print_grid(grid)
+            #print("\nwrap border:")
+            #print_grid(grid)
         case "symmetric":
             grid = np.pad(grid, 1, mode=pad_mode)
-            print("\nsymmetric border:")
-            print_grid(grid)
+            #print("\nsymmetric border:")
+            #print_grid(grid)
         case _:
             raise ValueError("Invalid padding mode. Valid modes: live | dead | wrap | symmetric")
     return grid
@@ -90,13 +90,12 @@ def run_game(grid, num_gens, pad_mode):
     Prints output of each generation (without padding) to terminal."""
     #print("\ngeneration 0:")
     #print_grid(grid[1:-1, 1:-1])
-
+    grid = pad_grid(grid, pad_mode)
     for gen in range(1, num_gens+1):
         print(f"\ngeneration {gen}:")
-        #BUG: Gris is NOT padded before calling compute_next_gen if run_game is called alone
         grid = compute_next_gen(grid, pad_mode)
         #print_grid(grid[1:-1, 1:-1])
-    return grid
+    return grid[1:-1, 1:-1] #don't return padded area
 
 
 if __name__ == "__main__":
@@ -111,5 +110,4 @@ if __name__ == "__main__":
     # print("\nparsed input:")
     # print_grid(grid)
 
-    grid = pad_grid(grid, pad_mode)
     run_game(grid, num_gens, pad_mode)
