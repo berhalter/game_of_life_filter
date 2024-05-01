@@ -3,10 +3,11 @@ import image
 
 # pygame setup
 pygame.init()
-screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
 running = True
-pil_im = image.open_image("./images/snake.jpg")
+pil_im = image.open_image("./images/tripod.jpg")
+screen_size = pil_im.size
+screen = pygame.display.set_mode((screen_size[0], screen_size[1]))
 pil_im = image.apply_dither(pil_im)
 screen.fill("purple")
 pyg_im = pygame.image.frombytes(pil_im.convert("RGB").tobytes(), pil_im.size, "RGB").convert()
@@ -39,4 +40,6 @@ while running:
 
     clock.tick(60)  # limits FPS to 60
 
+#save image as a BMP when window closed (jpeg is too lossy)
+pygame.image.save(pyg_im, f"tripod_gen{gen_ct}.bmp")
 pygame.quit()
