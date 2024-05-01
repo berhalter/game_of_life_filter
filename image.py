@@ -6,6 +6,8 @@ import sys
 import numpy as np
 import game
 
+#TODO: Rename this file to avoid confusion
+
 def normalize(grid):
     """Return a copy of the grid where all non-zero values are set to 1"""
     retval = grid.copy()
@@ -37,10 +39,16 @@ def open_image(filename):
     except OSError:
         raise SystemExit(f"Could not open {filename}.")
 
+def apply_dither(im):
+    """Return a PIL image that is the input with a Bayer dither filter applied"""
+    im = ordered_dither(im, "Bayer2x2") #TODO: parameterize the fitler size
+    im = Image.fromarray(im)
+    return im
+
 
 def apply_filter(im, num_gens, pad_mode):
+    """Return a PIL image that is a result of applying Game of Life rules to its pixels"""
     im = np.array(im)
-    im = ordered_dither(im, "Bayer2x2") #TODO: parameterize the fitler size
     im = normalize(im)
     im = game.run_game(im, num_gens, pad_mode)
     im = denormalize(im)

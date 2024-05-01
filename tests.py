@@ -129,6 +129,45 @@ class Tests(unittest.TestCase):
         
 
     def test_rungame(self):
+        pad_mode = "dead" #test with different modes!!!
+        #test block 1 generation
+        grid = np.array([[0,0,0,0],
+                         [0,1,1,0],
+                         [0,1,1,0],
+                         [0,0,0,0]], int)
+        expected = np.array([[0,0,0,0],
+                             [0,1,1,0],
+                             [0,1,1,0],
+                             [0,0,0,0]], int)
+        actual = game.run_game(grid, 1, pad_mode)
+        self.assertTrue(np.array_equal(actual, expected))
+
+        #test blinker 1 generation
+        grid = np.array([[0,0,0,0,0],
+                         [0,0,1,0,0],
+                         [0,0,1,0,0],
+                         [0,0,1,0,0],
+                         [0,0,0,0,0]], int)
+        expected = np.array([[0,0,0,0,0],
+                             [0,0,0,0,0],
+                             [0,1,1,1,0],
+                             [0,0,0,0,0],
+                             [0,0,0,0,0]], int)
+        actual = game.run_game(grid, 1, pad_mode)
+        self.assertTrue(np.array_equal(actual, expected))
+        #test blinker 2 generations
+        expected = np.array([[0,0,0,0,0],
+                             [0,0,1,0,0],
+                             [0,0,1,0,0],
+                             [0,0,1,0,0],
+                             [0,0,0,0,0]], int)
+        actual = game.run_game(grid, 2, pad_mode)
+        self.assertTrue(np.array_equal(actual, expected))
+
+        #test pulsar 1 generation
+        #test pulsar 2 generations
+        #test pulsar 3 generations
+
         pass
 
     def test_normalize(self):
@@ -164,6 +203,7 @@ class Tests(unittest.TestCase):
     # I have no idea how to test these next two since they return images. 
     # Not overly concerned about it, since failiure of these implies a failure in
     # a library function or a function I wrote, so I might delete them
+    # LOL nvm apply_filter is 100% the bug
     def test_open(self):
         pass
 

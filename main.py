@@ -7,6 +7,7 @@ screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
 running = True
 pil_im = image.open_image("./images/snake.jpg")
+pil_im = image.apply_dither(pil_im)
 screen.fill("purple")
 pyg_im = pygame.image.frombytes(pil_im.convert("RGB").tobytes(), pil_im.size, "RGB").convert()
 screen.blit(pyg_im, (0,0))
@@ -23,8 +24,9 @@ while running:
     screen.fill("purple")
 
     # RENDER YOUR GAME HERE
-    pil_im = image.apply_filter(pil_im, 1, "live")
+    pil_im = image.apply_filter(pil_im, 3, "dead")
     #BUG: using different generation counts yields different results after the same total number of generations
+    #I think it's from apply filter, since the image does not need to be ditehred every time
     pyg_im = pygame.image.frombytes(pil_im.convert("RGB").tobytes(), pil_im.size, "RGB").convert()
     screen.blit(pyg_im, (0,0))
 

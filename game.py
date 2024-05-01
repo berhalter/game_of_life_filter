@@ -3,6 +3,8 @@
 import numpy as np
 import sys
 
+#TODO: Rename this file to avoid confusion
+
 live = 1
 dead = 0
 
