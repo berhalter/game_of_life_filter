@@ -94,7 +94,7 @@ def run_game(grid, num_gens, pad_mode):
     #print_grid(grid[1:-1, 1:-1])
     grid = pad_grid(grid, pad_mode)
     for gen in range(1, num_gens+1):
-        print(f"\ngeneration {gen}:")
+        #print(f"\ngeneration {gen}:")
         grid = compute_next_gen(grid, pad_mode)
         #print_grid(grid[1:-1, 1:-1])
     return grid[1:-1, 1:-1] #don't return padded area

@@ -41,6 +41,7 @@ def open_image(filename):
 
 def apply_dither(im):
     """Return a PIL image that is the input with a Bayer dither filter applied"""
+    im = np.array(im)
     im = ordered_dither(im, "Bayer2x2") #TODO: parameterize the fitler size
     im = Image.fromarray(im)
     return im

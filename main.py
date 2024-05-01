@@ -11,8 +11,11 @@ pil_im = image.apply_dither(pil_im)
 screen.fill("purple")
 pyg_im = pygame.image.frombytes(pil_im.convert("RGB").tobytes(), pil_im.size, "RGB").convert()
 screen.blit(pyg_im, (0,0))
+pygame.display.flip()
+clock.tick(60)
 
-
+gen_ct = 0
+print(gen_ct)
 while running:
     # poll for events
     # pygame.QUIT event means the user clicked X to close your window
@@ -25,9 +28,9 @@ while running:
 
     # RENDER YOUR GAME HERE
     pil_im = image.apply_filter(pil_im, 1, "dead")
-    #BUG: using different generation counts yields different results after the same total number of generations
-    #I think it's from apply filter, since the image does not need to be ditehred every time
     pyg_im = pygame.image.frombytes(pil_im.convert("RGB").tobytes(), pil_im.size, "RGB").convert()
+    gen_ct += 1
+    print(gen_ct)
     screen.blit(pyg_im, (0,0))
 
 
