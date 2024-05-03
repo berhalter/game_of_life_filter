@@ -1,11 +1,14 @@
 import pygame
 import image
+import time
+
+file = "snake"
 
 # pygame setup
 pygame.init()
 clock = pygame.time.Clock()
 running = True
-pil_im = image.open_image("./images/tripod.jpg")
+pil_im = image.open_image(f"./images/{file}.jpg")
 screen_size = pil_im.size
 screen = pygame.display.set_mode((screen_size[0], screen_size[1]))
 pil_im = image.apply_dither(pil_im)
@@ -16,7 +19,8 @@ pygame.display.flip()
 clock.tick(60)
 
 gen_ct = 0
-print(gen_ct)
+print(f"gen:{str(gen_ct)}")
+start = time.time()
 while running:
     # poll for events
     # pygame.QUIT event means the user clicked X to close your window
@@ -31,7 +35,8 @@ while running:
     pil_im = image.apply_filter(pil_im, 1, "dead")
     pyg_im = pygame.image.frombytes(pil_im.convert("RGB").tobytes(), pil_im.size, "RGB").convert()
     gen_ct += 1
-    print(gen_ct)
+    print(f"gen:{str(gen_ct)} time diff:{str(time.time() - start)}")
+    start = time.time()
     screen.blit(pyg_im, (0,0))
 
 
@@ -41,5 +46,5 @@ while running:
     clock.tick(60)  # limits FPS to 60
 
 #save image as a BMP when window closed (jpeg is too lossy)
-pygame.image.save(pyg_im, f"tripod_gen{gen_ct}.bmp")
+pygame.image.save(pyg_im, f"{file}_gen{gen_ct}.bmp")
 pygame.quit()
