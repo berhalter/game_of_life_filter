@@ -34,20 +34,12 @@ def pad_grid(grid, pad_mode):
     match pad_mode:
         case "live":
             grid = np.pad(grid, 1, mode="constant", constant_values=live)
-            #print("\nlive border:")
-            #print_grid(grid)
         case "dead":
             grid = np.pad(grid, 1, mode="constant", constant_values=dead)
-            #print("\ndead border:")
-            #print_grid(grid)
         case "wrap":
             grid = np.pad(grid, 1, mode=pad_mode)
-            #print("\nwrap border:")
-            #print_grid(grid)
         case "symmetric":
             grid = np.pad(grid, 1, mode=pad_mode)
-            #print("\nsymmetric border:")
-            #print_grid(grid)
         case _:
             raise ValueError("Invalid padding mode. Valid modes: live | dead | wrap | symmetric")
     return grid
@@ -90,26 +82,7 @@ def compute_next_gen(grid, pad_mode):
 def run_game(grid, num_gens, pad_mode):
     """Plays game for given number of generations.
     Prints output of each generation (without padding) to terminal."""
-    #print("\ngeneration 0:")
-    #print_grid(grid[1:-1, 1:-1])
     grid = pad_grid(grid, pad_mode)
     for gen in range(1, num_gens+1):
-        #print(f"\ngeneration {gen}:")
         grid = compute_next_gen(grid, pad_mode)
-        #print_grid(grid[1:-1, 1:-1])
     return grid[1:-1, 1:-1] #don't return padded area
-
-
-if __name__ == "__main__":
-    try:
-        filename = sys.argv[1]
-        num_gens = int(sys.argv[2])
-        pad_mode = sys.argv[3]
-    except IndexError:
-        raise SystemExit(f"Usage: {sys.argv[0]} <filename> <# of generations> <padding mode>")
-    
-    grid = np.loadtxt(filename, dtype=int)
-    # print("\nparsed input:")
-    # print_grid(grid)
-
-    run_game(grid, num_gens, pad_mode)

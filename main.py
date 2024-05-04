@@ -11,7 +11,7 @@ running = True
 pil_im = image.open_image(f"./images/{file}.jpg")
 screen_size = pil_im.size
 screen = pygame.display.set_mode((screen_size[0], screen_size[1]))
-pil_im = image.apply_dither(pil_im)
+pil_im = image.apply_dither_rgb(pil_im)
 screen.fill("purple")
 pyg_im = pygame.image.frombytes(pil_im.convert("RGB").tobytes(), pil_im.size, "RGB").convert()
 screen.blit(pyg_im, (0,0))
@@ -32,7 +32,7 @@ while running:
     screen.fill("purple")
 
     # RENDER YOUR GAME HERE
-    pil_im = image.apply_filter(pil_im, 1, "dead")
+    pil_im = image.apply_filter_rgb(pil_im, 1, "dead")
     pyg_im = pygame.image.frombytes(pil_im.convert("RGB").tobytes(), pil_im.size, "RGB").convert()
     gen_ct += 1
     print(f"gen:{str(gen_ct)} time diff:{str(time.time() - start)}")
