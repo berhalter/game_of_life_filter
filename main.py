@@ -2,7 +2,7 @@ import pygame
 import image
 import time
 
-file = "snake"
+file = "anseladams"
 
 # pygame setup
 pygame.init()
