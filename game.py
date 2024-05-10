@@ -26,22 +26,22 @@ def pad_grid(grid, pad_mode):
     Return the padded grid. 
 
     Valid modes:
-     - 'live' counts cells outside of the grid as live.
      - 'dead' counts cells outside of the grid as dead.
+     - 'live' counts cells outside of the grid as live.
      - 'wrap' counts cells outside of the grid as the value of the cells on the opposite side.
      - 'symmetric' counts cells outside of the grid as the same value as the cells on that edge.
     """
     match pad_mode:
-        case "live":
-            grid = np.pad(grid, 1, mode="constant", constant_values=live)
         case "dead":
             grid = np.pad(grid, 1, mode="constant", constant_values=dead)
+        case "live":
+            grid = np.pad(grid, 1, mode="constant", constant_values=live)
         case "wrap":
             grid = np.pad(grid, 1, mode=pad_mode)
         case "symmetric":
             grid = np.pad(grid, 1, mode=pad_mode)
         case _:
-            raise ValueError("Invalid padding mode. Valid modes: live | dead | wrap | symmetric")
+            raise ValueError("Invalid padding mode. Valid modes: dead | live | wrap | symmetric")
     return grid
 
 

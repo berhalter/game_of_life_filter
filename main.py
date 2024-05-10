@@ -1,8 +1,9 @@
 import pygame
 import image
 import time
+import PIL.ImageOps
 
-file = "snake"
+file = "anseladams"
 
 # pygame setup
 pygame.init()
@@ -17,6 +18,8 @@ pyg_im = pygame.image.frombytes(pil_im.convert("RGB").tobytes(), pil_im.size, "R
 screen.blit(pyg_im, (0,0))
 pygame.display.flip()
 clock.tick(60)
+
+#pil_im = PIL.ImageOps.invert(pil_im) <---swap live and dead cells
 
 gen_ct = 0
 print(f"gen:{str(gen_ct)}")
