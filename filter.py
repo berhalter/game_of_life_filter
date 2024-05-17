@@ -1,5 +1,6 @@
 """ 
-    Graphical version of the Game of Life Image Filter.
+    Implementation of Game of Life Image filter for use with command line or
+    graphical interface.
     Copyright (C) 2024  Matthew Berhalter
 
     This program is free software: you can redistribute it and/or modify
