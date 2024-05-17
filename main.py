@@ -1,53 +1,52 @@
-import pygame
-import image
-import time
+import argparse
+import os
+import filter
 import PIL.ImageOps
 
-file = "anseladams"
+parser = argparse.ArgumentParser()
+#required arguments
+parser.add_argument("ngens", 
+                    help="number of generations",
+                    type=int)
+parser.add_argument("file",
+                    help="path to the image that will be filtered")
 
-# pygame setup
-pygame.init()
-clock = pygame.time.Clock()
-running = True
-pil_im = image.open_image(f"./images/{file}.jpg")
-screen_size = pil_im.size
-screen = pygame.display.set_mode((screen_size[0], screen_size[1]))
-pil_im = image.apply_dither_rgb(pil_im)
-screen.fill("purple")
-pyg_im = pygame.image.frombytes(pil_im.convert("RGB").tobytes(), pil_im.size, "RGB").convert()
-screen.blit(pyg_im, (0,0))
-pygame.display.flip()
-clock.tick(60)
+#optional arguments
+parser.add_argument("-p", "--pad",
+                    help="determine how cells outside the edge of the image are treated. default: dead",
+                    choices=["dead", "live", "wrap", "symmetric"])
+parser.add_argument("-d", "--dither",
+                    help="set the bayer filter size. default: 2x2",
+                    choices=["2x2","4x4","8x8"])
+parser.add_argument("-c", "--color",
+                    help="set the color space of the output image to RGB. the resulting image will be grayscale if this option is not given",
+                    action="store_true")
+parser.add_argument("-i", "--invert",
+                    help="swap the values of live and dead cells in the image",
+                    action="store_true")
+parser.add_argument("-e", "--extension",
+                    help="set the file extension of the output. default: bmp")
 
-#pil_im = PIL.ImageOps.invert(pil_im) <---swap live and dead cells
-
-gen_ct = 0
-print(f"gen:{str(gen_ct)}")
-start = time.time()
-while running:
-    # poll for events
-    # pygame.QUIT event means the user clicked X to close your window
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
-    # fill the screen with a color to wipe away anything from last frame
-    screen.fill("purple")
-
-    # RENDER YOUR GAME HERE
-    pil_im = image.apply_filter_rgb(pil_im, 1, "dead")
-    pyg_im = pygame.image.frombytes(pil_im.convert("RGB").tobytes(), pil_im.size, "RGB").convert()
-    gen_ct += 1
-    print(f"gen:{str(gen_ct)} time diff:{str(time.time() - start)}")
-    start = time.time()
-    screen.blit(pyg_im, (0,0))
+args = parser.parse_args()
 
 
-    # flip() the display to put your work on screen
-    pygame.display.flip()
+#set default values of optional arguments
+pad_mode = args.pad if args.pad else "dead"
+dither_mode = args.dither if args.dither else "2x2"
 
-    clock.tick(60)  # limits FPS to 60
+img = filter.open_image(args.file, args.color)
+img = filter.apply_dither(img, dither_mode, args.color)
+if args.invert: #not sure yet if it matters whether this is done before or after dithering.
+    img = PIL.ImageOps.invert(img)
+print("Applying filter...")
+img = filter.apply_filter(img, args.ngens, pad_mode, args.color)
 
-#save image as a BMP when window closed (jpeg is too lossy)
-pygame.image.save(pyg_im, f"{file}_gen{gen_ct}.bmp")
-pygame.quit()
+outfile = os.path.splitext(args.file)
+#set output info that cannot be taken directly from values
+colorspace = "_rgb" if args.color else "_grayscale"
+inverted = "_inverted" if args.invert else ""
+info = f"_gen{args.ngens}" + f"_{pad_mode}" + f"_{dither_mode}" + colorspace + inverted 
+outfile = outfile[0] + info + ".bmp"
+img.save(outfile)
+
+print(f"Image saved to: {outfile}")

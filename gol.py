@@ -83,6 +83,8 @@ def run_game(grid, num_gens, pad_mode):
     """Plays game for given number of generations.
     Prints output of each generation (without padding) to terminal."""
     grid = pad_grid(grid, pad_mode)
-    for gen in range(1, num_gens+1):
+    for gen in range(num_gens):
         grid = compute_next_gen(grid, pad_mode)
+        print('.', end='', flush=True) #lazy visual representation of progress for CLI version
+    print() #newline
     return grid[1:-1, 1:-1] #don't return padded area

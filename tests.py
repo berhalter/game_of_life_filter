@@ -1,6 +1,6 @@
 import unittest
-import game
-import image
+import gol
+import filter
 import numpy as np
 
 class Tests(unittest.TestCase):
@@ -29,7 +29,7 @@ class Tests(unittest.TestCase):
     def test_neighbors(self):
         def run_test(grid, expected):
             pt = (1, 1)
-            actual = game.count_neighbors(grid, pt[0], pt[1])
+            actual = gol.count_neighbors(grid, pt[0], pt[1])
             self.assertEqual(actual, expected)
 
         # dead cell no neighbors
@@ -57,7 +57,7 @@ class Tests(unittest.TestCase):
         grid = np.pad(grid, 1, mode="constant", constant_values=0)
         expected = np.zeros((3,3), int)
         expected = np.pad(expected, 1, mode="constant", constant_values=0)
-        actual = game.compute_next_gen(grid, pad_mode)
+        actual = gol.compute_next_gen(grid, pad_mode)
         self.assertTrue(np.array_equal(actual, expected))
 
         # grid of all ones
@@ -67,7 +67,7 @@ class Tests(unittest.TestCase):
                              [0,0,0],
                              [1,0,1]], int)
         expected = np.pad(expected, 1, mode="constant", constant_values=0)
-        actual = game.compute_next_gen(grid, pad_mode)
+        actual = gol.compute_next_gen(grid, pad_mode)
         self.assertTrue(np.array_equal(actual, expected))
 
         # "any live cell with fewer than two live neighbors dies"
@@ -77,7 +77,7 @@ class Tests(unittest.TestCase):
         grid = np.pad(grid, 1, mode="constant", constant_values=0)
         expected = np.zeros((3,3), int)
         expected = np.pad(expected, 1, mode="constant", constant_values=0)
-        actual = game.compute_next_gen(grid, pad_mode)
+        actual = gol.compute_next_gen(grid, pad_mode)
         self.assertTrue(np.array_equal(actual, expected))
         
         # "any live cell with two or three live neighbors lives on to the next generation"
@@ -89,7 +89,7 @@ class Tests(unittest.TestCase):
                              [0,1,0],
                              [0,1,0]], int)
         expected = np.pad(expected, 1, mode="constant", constant_values=0)
-        actual = game.compute_next_gen(grid, pad_mode)
+        actual = gol.compute_next_gen(grid, pad_mode)
         self.assertTrue(np.array_equal(actual, expected))
 
         grid = np.array([[0,1,0],
@@ -100,7 +100,7 @@ class Tests(unittest.TestCase):
                              [1,1,1],
                              [0,1,0]], int)
         expected = np.pad(expected, 1, mode="constant", constant_values=0)
-        actual = game.compute_next_gen(grid, pad_mode)
+        actual = gol.compute_next_gen(grid, pad_mode)
         self.assertTrue(np.array_equal(actual, expected))
 
         # "any live cell with more than three live neighbors dies, as if by overpopulation"
@@ -112,7 +112,7 @@ class Tests(unittest.TestCase):
                              [1,0,1],
                              [0,1,0]], int)
         expected = np.pad(expected, 1, mode="constant", constant_values=0)
-        actual = game.compute_next_gen(grid, pad_mode)
+        actual = gol.compute_next_gen(grid, pad_mode)
         self.assertTrue(np.array_equal(actual, expected))
         
         # "any dead cell with exactly three live neighbors becomes a live cell"
@@ -124,7 +124,7 @@ class Tests(unittest.TestCase):
                              [0,1,0],
                              [0,0,0]], int)
         expected = np.pad(expected, 1, mode="constant", constant_values=0)
-        actual = game.compute_next_gen(grid, pad_mode)
+        actual = gol.compute_next_gen(grid, pad_mode)
         self.assertTrue(np.array_equal(actual, expected))
         
 
@@ -139,7 +139,7 @@ class Tests(unittest.TestCase):
                              [0,1,1,0],
                              [0,1,1,0],
                              [0,0,0,0]], int)
-        actual = game.run_game(grid, 1, pad_mode)
+        actual = gol.run_game(grid, 1, pad_mode)
         self.assertTrue(np.array_equal(actual, expected))
 
         #test blinker 1 generation
@@ -153,7 +153,7 @@ class Tests(unittest.TestCase):
                              [0,1,1,1,0],
                              [0,0,0,0,0],
                              [0,0,0,0,0]], int)
-        actual = game.run_game(grid, 1, pad_mode)
+        actual = gol.run_game(grid, 1, pad_mode)
         self.assertTrue(np.array_equal(actual, expected))
         #test blinker 2 generations
         expected = np.array([[0,0,0,0,0],
@@ -161,7 +161,7 @@ class Tests(unittest.TestCase):
                              [0,0,1,0,0],
                              [0,0,1,0,0],
                              [0,0,0,0,0]], int)
-        actual = game.run_game(grid, 2, pad_mode)
+        actual = gol.run_game(grid, 2, pad_mode)
         self.assertTrue(np.array_equal(actual, expected))
 
         #test pulsar 1 generation
@@ -174,7 +174,7 @@ class Tests(unittest.TestCase):
         # all dead
         grid = np.zeros((3,3), int)
         expected = grid
-        actual = image.normalize(grid)
+        actual = filter.normalize(grid)
         self.assertTrue(np.array_equal(actual, expected))
 
         # all live
@@ -182,14 +182,14 @@ class Tests(unittest.TestCase):
                          [255,255,255],
                          [255,255,255]], int)
         expected = np.ones((3,3), int)
-        actual = image.normalize(grid)
+        actual = filter.normalize(grid)
         self.assertTrue(np.array_equal(actual, expected))
 
     def test_denormalize(self):
         # all dead
         grid = np.zeros((3,3), int)
         expected = grid
-        actual = image.denormalize(grid)
+        actual = filter.denormalize(grid)
         self.assertTrue(np.array_equal(actual, expected))
 
         # all live
@@ -197,7 +197,7 @@ class Tests(unittest.TestCase):
         expected = np.array([[255,255,255],
                              [255,255,255],
                              [255,255,255]], int)
-        actual = image.denormalize(grid)
+        actual = filter.denormalize(grid)
         self.assertTrue(np.array_equal(actual, expected))
 
     # I have no idea how to test these next two since they return images. 
