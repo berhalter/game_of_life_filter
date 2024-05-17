@@ -1,1 +1,10 @@
-# game_of_life_filter
+# Game of Life Image Filter
+
+## Description
+
+## Dependencies
+
+## Usage
+### Command Line Version
+
+### GUI Version

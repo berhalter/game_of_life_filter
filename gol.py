@@ -1,9 +1,24 @@
-#!/usr/bin/python3
+"""
+    Implementation of Conway's Game of Life for use with the Game of Life
+    Image Filter.
+    Copyright (C) 2024  Matthew Berhalter
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+"""
 
 import numpy as np
 import sys
-
-#TODO: Rename this file to avoid confusion
 
 live = 1
 dead = 0
@@ -86,5 +101,6 @@ def run_game(grid, num_gens, pad_mode):
     for gen in range(num_gens):
         grid = compute_next_gen(grid, pad_mode)
         print('.', end='', flush=True) #lazy visual representation of progress for CLI version
+                                       #TODO: this only works for grayscale
     print() #newline
     return grid[1:-1, 1:-1] #don't return padded area
