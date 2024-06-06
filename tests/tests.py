@@ -8,7 +8,7 @@ import numpy as np
 
 
 class Tests(unittest.TestCase):
-    pad_mode = "dead" #test with different modes!!!
+    pad_mode = "dead" #test with different modes?
 
     """Tests for count_neighbors()"""
     def test_neghbors_dead(self):
@@ -125,6 +125,14 @@ class Tests(unittest.TestCase):
         actual = gol.run_game(grid, 1, self.pad_mode)
         self.assertTrue(np.array_equal(actual, expected))
 
+    def test_rungame_blinker_0(self):
+        #test blinker 0 generations
+        fblinker0 = "./inputs/blinker0.txt"
+        grid = np.loadtxt(fblinker0, dtype=int)
+        expected = np.loadtxt(fblinker0, dtype=int)
+        actual = gol.run_game(grid, 0, self.pad_mode)
+        self.assertTrue(np.array_equal(actual, expected))
+    
     def test_rungame_blinker_1(self):
         #test blinker 1 generation
         fblinker0 = "./inputs/blinker0.txt"
@@ -137,15 +145,38 @@ class Tests(unittest.TestCase):
     def test_rungame_blinker_2(self):
         #test blinker 2 generations
         fblinker0 = "./inputs/blinker0.txt"
-        fblinker2 = fblinker0 #should be the same
+        fblinker2 = fblinker0 #blinker has a 2 generation cycle
         grid = np.loadtxt(fblinker0, dtype=int)
         expected = np.loadtxt(fblinker2, dtype=int)
         actual = gol.run_game(grid, 2, self.pad_mode)
         self.assertTrue(np.array_equal(actual, expected))
 
-        #test pulsar 1 generation
-        #test pulsar 2 generations
-        #test pulsar 3 generations
+    def test_rungame_cross_1(self):
+        #test cross 1 generation
+        fcross0 = "./inputs/cross0.txt"
+        fcross1 = "./inputs/cross1.txt"
+        grid = np.loadtxt(fcross0, dtype=int)
+        expected = np.loadtxt(fcross1, dtype=int)
+        actual = gol.run_game(grid, 1, self.pad_mode)
+        self.assertTrue(np.array_equal(actual, expected))
+
+    def test_rungame_cross_2(self):
+        #test cross 2 generations
+        fcross0 = "./inputs/cross0.txt"
+        fcross2 = "./inputs/cross2.txt"
+        grid = np.loadtxt(fcross0, dtype=int)
+        expected = np.loadtxt(fcross2, dtype=int)
+        actual = gol.run_game(grid, 2, self.pad_mode)
+        self.assertTrue(np.array_equal(actual, expected))
+
+    def test_rungame_cross_3(self):
+        #test cross 3 generations
+        fcross0 = "./inputs/cross0.txt"
+        fcross3 = fcross0 #cross has a 3 generation cycle
+        grid = np.loadtxt(fcross0, dtype=int)
+        expected = np.loadtxt(fcross3, dtype=int)
+        actual = gol.run_game(grid, 3, self.pad_mode)
+        self.assertTrue(np.array_equal(actual, expected))
 
     """Tests for normalize()"""
     def test_normalize_dead(self):
