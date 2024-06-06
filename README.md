@@ -1,10 +1,11 @@
 # Game of Life Image Filter
 
 ## Description
+This program applies Conway's Game of Life to images. 
 
-## Dependencies
 
 ## Usage
+### Dependencies
 ### Command Line Version
 
 ### GUI Version

@@ -22,7 +22,7 @@ import pygame as pg
 import pygame_gui as gui
 import filter
 
-file = "spongebob"
+file = "lowres_snake"
 is_color = True
 
 # pygame setup
