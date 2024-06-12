@@ -2,6 +2,7 @@
 import sys
 
 from PySide6.QtWidgets import QApplication, QMainWindow
+from PySide6 import QtGui
 
 # Important:
 # You need to run the following command to generate the ui_form.py file
@@ -14,6 +15,10 @@ class MainWindow(QMainWindow):
         super().__init__(parent)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.current_file = "../images/utahteapot.jpg"
+        pixmap = QtGui.QPixmap(self.current_file)
+        pixmap = pixmap.scaled(self.width(), self.height())
+        self.ui.image.setPixmap(pixmap)
 
 
 if __name__ == "__main__":

@@ -34,39 +34,39 @@ class Ui_MainWindow(object):
         self.gridLayout.setObjectName(u"gridLayout")
         self.formLayout = QFormLayout()
         self.formLayout.setObjectName(u"formLayout")
-        self.comboBox_3 = QComboBox(self.centralwidget)
-        self.comboBox_3.addItem("")
-        self.comboBox_3.addItem("")
-        self.comboBox_3.setObjectName(u"comboBox_3")
+        self.comboColor = QComboBox(self.centralwidget)
+        self.comboColor.addItem("")
+        self.comboColor.addItem("")
+        self.comboColor.setObjectName(u"comboColor")
 
-        self.formLayout.setWidget(1, QFormLayout.FieldRole, self.comboBox_3)
+        self.formLayout.setWidget(1, QFormLayout.FieldRole, self.comboColor)
 
         self.label_4 = QLabel(self.centralwidget)
         self.label_4.setObjectName(u"label_4")
 
         self.formLayout.setWidget(2, QFormLayout.LabelRole, self.label_4)
 
-        self.comboBox_2 = QComboBox(self.centralwidget)
-        self.comboBox_2.addItem("")
-        self.comboBox_2.addItem("")
-        self.comboBox_2.addItem("")
-        self.comboBox_2.addItem("")
-        self.comboBox_2.setObjectName(u"comboBox_2")
+        self.comboPad = QComboBox(self.centralwidget)
+        self.comboPad.addItem("")
+        self.comboPad.addItem("")
+        self.comboPad.addItem("")
+        self.comboPad.addItem("")
+        self.comboPad.setObjectName(u"comboPad")
 
-        self.formLayout.setWidget(2, QFormLayout.FieldRole, self.comboBox_2)
+        self.formLayout.setWidget(2, QFormLayout.FieldRole, self.comboPad)
 
         self.label_3 = QLabel(self.centralwidget)
         self.label_3.setObjectName(u"label_3")
 
         self.formLayout.setWidget(3, QFormLayout.LabelRole, self.label_3)
 
-        self.comboBox = QComboBox(self.centralwidget)
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.setObjectName(u"comboBox")
+        self.comboDither = QComboBox(self.centralwidget)
+        self.comboDither.addItem("")
+        self.comboDither.addItem("")
+        self.comboDither.addItem("")
+        self.comboDither.setObjectName(u"comboDither")
 
-        self.formLayout.setWidget(3, QFormLayout.FieldRole, self.comboBox)
+        self.formLayout.setWidget(3, QFormLayout.FieldRole, self.comboDither)
 
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
@@ -76,10 +76,10 @@ class Ui_MainWindow(object):
 
         self.formLayout.setItem(4, QFormLayout.FieldRole, self.verticalSpacer_2)
 
-        self.pushButton = QPushButton(self.centralwidget)
-        self.pushButton.setObjectName(u"pushButton")
+        self.pushStart = QPushButton(self.centralwidget)
+        self.pushStart.setObjectName(u"pushStart")
 
-        self.formLayout.setWidget(5, QFormLayout.LabelRole, self.pushButton)
+        self.formLayout.setWidget(5, QFormLayout.LabelRole, self.pushStart)
 
         self.formLayout_2 = QFormLayout()
         self.formLayout_2.setObjectName(u"formLayout_2")
@@ -88,13 +88,13 @@ class Ui_MainWindow(object):
 
         self.formLayout_2.setWidget(0, QFormLayout.LabelRole, self.label_2)
 
-        self.spinBox = QSpinBox(self.centralwidget)
-        self.spinBox.setObjectName(u"spinBox")
-        self.spinBox.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-        self.spinBox.setReadOnly(True)
-        self.spinBox.setButtonSymbols(QAbstractSpinBox.NoButtons)
+        self.spinGenCurrent = QSpinBox(self.centralwidget)
+        self.spinGenCurrent.setObjectName(u"spinGenCurrent")
+        self.spinGenCurrent.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.spinGenCurrent.setReadOnly(True)
+        self.spinGenCurrent.setButtonSymbols(QAbstractSpinBox.NoButtons)
 
-        self.formLayout_2.setWidget(0, QFormLayout.FieldRole, self.spinBox)
+        self.formLayout_2.setWidget(0, QFormLayout.FieldRole, self.spinGenCurrent)
 
 
         self.formLayout.setLayout(5, QFormLayout.FieldRole, self.formLayout_2)
@@ -109,23 +109,25 @@ class Ui_MainWindow(object):
 
         self.formLayout.setWidget(0, QFormLayout.LabelRole, self.label_6)
 
-        self.spinBox_2 = QSpinBox(self.centralwidget)
-        self.spinBox_2.setObjectName(u"spinBox_2")
+        self.spinGenSelect = QSpinBox(self.centralwidget)
+        self.spinGenSelect.setObjectName(u"spinGenSelect")
 
-        self.formLayout.setWidget(0, QFormLayout.FieldRole, self.spinBox_2)
+        self.formLayout.setWidget(0, QFormLayout.FieldRole, self.spinGenSelect)
 
 
         self.gridLayout.addLayout(self.formLayout, 0, 0, 1, 1)
 
-        self.label = QLabel(self.centralwidget)
-        self.label.setObjectName(u"label")
+        self.image = QLabel(self.centralwidget)
+        self.image.setObjectName(u"image")
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
-        self.label.setSizePolicy(sizePolicy)
+        sizePolicy.setHeightForWidth(self.image.sizePolicy().hasHeightForWidth())
+        self.image.setSizePolicy(sizePolicy)
+        self.image.setScaledContents(True)
+        self.image.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.label, 0, 1, 1, 1)
+        self.gridLayout.addWidget(self.image, 0, 1, 1, 1)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
@@ -149,25 +151,25 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.actionOpen_image.setText(QCoreApplication.translate("MainWindow", u"Open image", None))
-        self.comboBox_3.setItemText(0, QCoreApplication.translate("MainWindow", u"RGB", None))
-        self.comboBox_3.setItemText(1, QCoreApplication.translate("MainWindow", u"Grayscale", None))
+        self.comboColor.setItemText(0, QCoreApplication.translate("MainWindow", u"RGB", None))
+        self.comboColor.setItemText(1, QCoreApplication.translate("MainWindow", u"Grayscale", None))
 
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Pad mode:", None))
-        self.comboBox_2.setItemText(0, QCoreApplication.translate("MainWindow", u"Dead", None))
-        self.comboBox_2.setItemText(1, QCoreApplication.translate("MainWindow", u"Live", None))
-        self.comboBox_2.setItemText(2, QCoreApplication.translate("MainWindow", u"Wrap", None))
-        self.comboBox_2.setItemText(3, QCoreApplication.translate("MainWindow", u"Symmetric", None))
+        self.comboPad.setItemText(0, QCoreApplication.translate("MainWindow", u"Dead", None))
+        self.comboPad.setItemText(1, QCoreApplication.translate("MainWindow", u"Live", None))
+        self.comboPad.setItemText(2, QCoreApplication.translate("MainWindow", u"Wrap", None))
+        self.comboPad.setItemText(3, QCoreApplication.translate("MainWindow", u"Symmetric", None))
 
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Dither", None))
-        self.comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"2x2", None))
-        self.comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"4x4", None))
-        self.comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"8x8", None))
+        self.comboDither.setItemText(0, QCoreApplication.translate("MainWindow", u"2x2", None))
+        self.comboDither.setItemText(1, QCoreApplication.translate("MainWindow", u"4x4", None))
+        self.comboDither.setItemText(2, QCoreApplication.translate("MainWindow", u"8x8", None))
 
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Start", None))
+        self.pushStart.setText(QCoreApplication.translate("MainWindow", u"Start", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Current generation:", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"Color mode:", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Generations:", None))
-        self.label.setText("")
+        self.image.setText("")
         self.menuFile.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
     # retranslateUi
 
