@@ -2,7 +2,7 @@
 import sys
 
 from PySide6.QtGui import QPixmap
-from PySide6.QtCore import Qt, QEvent
+from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QApplication, QMainWindow
 
 # Important:
