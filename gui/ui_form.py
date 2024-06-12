@@ -124,7 +124,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.image.sizePolicy().hasHeightForWidth())
         self.image.setSizePolicy(sizePolicy)
-        self.image.setScaledContents(True)
+        self.image.setScaledContents(False)
         self.image.setAlignment(Qt.AlignCenter)
 
         self.gridLayout.addWidget(self.image, 0, 1, 1, 1)
