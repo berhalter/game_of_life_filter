@@ -19,8 +19,11 @@ class MainWindow(QMainWindow):
         self.default_file = "../images/default.png"
         self.current_file = "../images/utahteapot.jpg"
         pixmap = QPixmap(self.current_file)
-        pixmap = pixmap.scaled(self.width(), self.height(), Qt.KeepAspectRatio)
+        pixmap = pixmap.scaled(self.size(), Qt.KeepAspectRatio)
         self.ui.image.setPixmap(pixmap)
+
+
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
