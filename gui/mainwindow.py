@@ -21,7 +21,7 @@ class MainWindow(QMainWindow):
         pixmap = QPixmap(self.current_file)
         pixmap = pixmap.scaled(self.size(), Qt.KeepAspectRatio)
         self.ui.image.setPixmap(pixmap)
-
+#maybe overload QLabel's resizeEvent instead?
 
 
 
