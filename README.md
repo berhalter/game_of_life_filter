@@ -2,7 +2,7 @@
 This program applies Conway's Game of Life to images, either in RGB or grayscale.
 
 ## Requirements
-Requires [Pygame](https://www.pygame.org/) and [Pillow](https://python-pillow.org/)
+Requires [Pygame](https://www.pygame.org/), [NumPy](https://numpy.org/), [Pillow](https://python-pillow.org/), and [Dithering](https://pypi.org/project/dithering/)
 
 ## Usage
 Run `python main.py` for the command line version.
