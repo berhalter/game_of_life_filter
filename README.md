@@ -8,5 +8,8 @@ Requires [Pygame](https://www.pygame.org/) and [Pillow](https://python-pillow.or
 Run `python main.py` for the command line version.
 Run `python gui.pu` for the GUI version.
 
+## Bugs and Future Improvements
+Please see the "Issues" tab for this repository.
+
 ## License
 [GPL-3.0](https://www.gnu.org/licenses/gpl-3.0.html)
