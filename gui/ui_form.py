@@ -111,6 +111,7 @@ class Ui_MainWindow(object):
 
         self.spinGenSelect = QSpinBox(self.centralwidget)
         self.spinGenSelect.setObjectName(u"spinGenSelect")
+        self.spinGenSelect.setValue(10)
 
         self.formLayout.setWidget(0, QFormLayout.FieldRole, self.spinGenSelect)
 
