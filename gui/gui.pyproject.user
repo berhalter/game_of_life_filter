@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 13.0.2, 2024-07-16T22:36:06. -->
+<!-- Written by QtCreator 13.0.2, 2024-07-17T21:52:40. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -189,7 +189,7 @@
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">sig_func.py</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration./home/mjb/programs/game_of_life_filter/gui/sig_func.py</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/mjb/programs/game_of_life_filter/gui/sig_func.py</value>
-    <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">false</value>
+    <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">true</value>
     <value type="QString" key="PythonEditor.RunConfiguation.Script">/home/mjb/programs/game_of_life_filter/gui/sig_func.py</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>

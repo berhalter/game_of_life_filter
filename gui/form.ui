@@ -214,5 +214,25 @@
   </action>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>spinGenSelect</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setGenCount()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>168</x>
+     <y>43</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>149</x>
+     <y>297</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>setGenCount()</slot>
+ </slots>
 </ui>

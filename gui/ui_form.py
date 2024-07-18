@@ -145,6 +145,7 @@ class Ui_MainWindow(object):
         self.menuFile.addAction(self.actionOpen_image)
 
         self.retranslateUi(MainWindow)
+        self.spinGenSelect.valueChanged.connect(MainWindow.setGenCount)
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
