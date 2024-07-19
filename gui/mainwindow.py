@@ -13,6 +13,9 @@ from ui_form import Ui_MainWindow
 
 class MainWindow(QMainWindow):
     gen_ct = 10
+    color_mode = "rgb"
+    pad_mode = "dead"
+    dither_mode = "2x2"
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -28,6 +31,25 @@ class MainWindow(QMainWindow):
     def setGenCount(self, ct):
         self.gen_ct = ct
         print(self.gen_ct)
+
+    @Slot(str)
+    def setColorMode(self, mode):
+        self.color_mode = mode.lower()
+        print(self.color_mode)
+
+    @Slot(str)
+    def setPadMode(self, mode):
+        self.pad_mode = mode.lower()
+        print(self.pad_mode)
+
+    @Slot(str)
+    def setDitherMode(self, mode):
+        self.dither_mode = mode
+        print(self.dither_mode)
+
+    @Slot()
+    def startGame(self):
+        pass
 
 
 #maybe overload QLabel's resizeEvent instead?

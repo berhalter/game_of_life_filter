@@ -146,6 +146,10 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.spinGenSelect.valueChanged.connect(MainWindow.setGenCount)
+        self.comboColor.currentTextChanged.connect(MainWindow.setColorMode)
+        self.comboPad.currentTextChanged.connect(MainWindow.setPadMode)
+        self.comboDither.currentTextChanged.connect(MainWindow.setDitherMode)
+        self.pushStart.clicked.connect(MainWindow.startGame)
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi

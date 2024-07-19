@@ -231,8 +231,76 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>comboColor</sender>
+   <signal>currentTextChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setColorMode()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>206</x>
+     <y>66</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>217</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboPad</sender>
+   <signal>currentTextChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setPadMode()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>166</x>
+     <y>101</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>57</x>
+     <y>199</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboDither</sender>
+   <signal>currentTextChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setDitherMode()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>200</x>
+     <y>127</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>176</x>
+     <y>393</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushStart</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>startGame()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>68</x>
+     <y>602</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>148</x>
+     <y>519</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>setGenCount()</slot>
+  <slot>setColorMode()</slot>
+  <slot>setPadMode()</slot>
+  <slot>setDitherMode()</slot>
+  <slot>startGame()</slot>
  </slots>
 </ui>
