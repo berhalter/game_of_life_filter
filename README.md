@@ -6,7 +6,7 @@ Requires [Pygame](https://www.pygame.org/), [NumPy](https://numpy.org/), [Pillow
 
 ## Usage
 Run `python main.py` for the command line version.
-Run `python gui.pu` for the GUI version.
+Run `python gui.py` for the GUI version.
 
 ## Bugs and Future Improvements
 Please see the "Issues" tab for this repository.
